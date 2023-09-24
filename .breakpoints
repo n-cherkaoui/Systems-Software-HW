@@ -1,0 +1,20 @@
+{
+  "files": {
+    "vm.c": [
+      {
+        "id": "d5297ce5-3ccd-41c8-b944-9669009df4dc",
+        "line": 3,
+        "version": 3753,
+        "index": 42
+      }
+    ],
+    "vm_test0.lst": [
+      {
+        "id": "686f5000-bc40-4357-9d1d-5c6c8eb12e94",
+        "line": 5,
+        "version": 2,
+        "index": 75
+      }
+    ]
+  }
+}

@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
     BOFHeader header = bof_read_header(bf);
     saveRegister = malloc(sizeof(int *) * 10);
     registers = malloc(sizeof(int) * 32);
-    saveRegister[0] = registers;
+    //saveRegister[0] = registers;
 
     performOperations(header.text_length, bf);
   }
@@ -74,7 +74,7 @@ void performOperations(int text_length, BOFFILE bf) {
       switch (it.immed.op) {
       default:
         printf("==> addr: \t%d %s\n", PC, instruction_assembly_form(it));
-        saveRegister[PC / 4] = registers;
+        //saveRegister[PC / 4] = registers;
         addI(it.immed.rs, it.immed.rt, it.immed.immed);
         break;
       }
@@ -101,7 +101,10 @@ void performOperations(int text_length, BOFFILE bf) {
     //debugArraysPrint(PC);
     // printRegisters();
   }
-  // debugArraysPrint(4);
+  for (int i = 0; i < 3; i++){
+    debugArraysPrint(i*4);
+  }
+  //debugArraysPrint(4);
 }
 
 void addI(int rs, int rt, int immed) { registers[rt] = rs + immed; }
@@ -117,7 +120,7 @@ void printRegisters() {
       printf("\n");
     }
   }
-
+  saveRegister[PC/4] = registers;
   printf("\n\n");
 }
 
@@ -130,12 +133,13 @@ int *copyRegisters() {
 void debugArraysPrint(int PC) {
   printf("Printing at PC: %d\n", PC);
   for (int i = 0; i < 32; i++) {
-    printf("GPR[%s]: %d ", regnames[i], saveRegister[PC/4 - 1][i]);
+    printf("GPR[%s]: %d ", regnames[i], saveRegister[PC/4][i]);
 
     if (i % 4 == 0) {
       printf("\n");
     }
   }
+  
   printf("\n\n");
 }
 
